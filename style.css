@@ -1,0 +1,39 @@
+
+
+#calculator {
+    width: 300px;
+    margin: auto;
+}
+
+#display {
+    width: auto;
+    margin: 20px 0 0;
+    text-align: right;
+    border: solid 1px black;
+}
+
+#cldisp {
+    height: 20px;
+    margin: 0;
+    padding-right: 10px;
+}
+
+#disp {
+    margin: 0;
+    padding-right: 5px;
+    font-size: 40px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td {
+    height: 50px;
+    margin-left: 0;
+    border: solid 1px black;
+}
+
