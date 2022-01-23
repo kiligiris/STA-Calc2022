@@ -6,131 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $(function(){
-            var result = 0
-            var nums = []
-            var calc = []
-            var idx = 0
-
-            $("#ac").on("click", function() {
-                nums = []
-                calc = []
-                idx = 0
-                display()
-            })
-
-            $(".num").on("click", function() {
-                var click =  $(this).text()
-                if($("#disp").text() != 0){
-                    if(nums.length == idx + 1){
-                        nums[idx] +=  click
-                    } else {
-                        nums[idx] =  click
-                    }
-                    display()
-                } else {
-                    nums[idx] = click
-                    display()
-                }
-            });
-
-            $(".calc").on("click", function() {
-                if(nums.length == idx + 1){
-                    calc.push($(this).text())
-                    idx += 1
-                } else {
-                    calc[idx] = $(this).text()
-                }
-                display()
-                if($(this).text() == "=") {
-                    calc.pop()
-                    if(nums.length == 0) {
-                        return
-                    } else if(nums.length == 1 && calc.length == 0) {
-                        return
-                    }
-                    if(nums.length == calc.length) {
-                        nums.push(nums[nums.length - 1])
-                    }
-                    for(let i = 0; i < calc.length; i++) {
-                        if(calc[i] == "×") {
-                            product(i)
-                        } else if(calc[i] == "÷") {
-                            quotient(i)
-                        }
-                    }
-                    for(let i = 0; i < calc.length; i++) {
-                        if(calc[i] == "+") {
-                            sum(i)
-                        } else if(calc[i] == "-") {
-                            diff(i)
-                        }
-                    }
-                    $("#disp").text(nums[0])
-                    idx = 0
-                    console.log(nums)
-                    console.log(calc)
-                }
-            });
-
-            function display() {
-                if(nums.length == 0) {
-                    $("#cldisp").text("")
-                    $("#disp").text(0)
-                    console.log(000)
-                    return
-                }
-                cldisp = []
-                if(nums.length == calc.length) {
-                    cldisp = cldisp_create(nums.length)
-                } else {
-                    cldisp = cldisp_create(calc.length)
-                    cldisp.push(nums[nums.length - 1])
-                }
-
-                $("#cldisp").text(cldisp.join(""))
-
-                $("#disp").text(nums[idx])
-            }
-
-            function cldisp_create(num) {
-                cldisp = []
-                for(let i = 0; i < num; i++){
-                    cldisp.push(nums[i])
-                    cldisp.push(calc[i])
-                }
-                return cldisp
-            }
-
-            function sum(i) {
-                n = Number(nums[i]) + Number(nums[i + 1])
-                nums.splice(i,3,n)
-                calc.pop(i)
-            }
-
-            function diff(i) {
-                n = nums[i] - nums[i + 1]
-                nums.splice(i,3,n)
-
-                calc.pop(i)
-            }
-
-            function product(i) {
-                n = nums[i] * nums[i + 1]
-                nums.splice(i,3,n)
-
-                calc.pop(i)
-            }
-
-            function quotient(i) {
-                n = nums[i] / nums[i + 1]
-                nums.splice(i,3,n)
-
-                calc.pop(i)
-            }
-        });
-    </script>
+    <script src="script.js"></script>
     <title>電卓</title>
 </head>
 <body>
@@ -142,8 +18,8 @@
         <div>
             <table>
                 <tr>
-                    <td>x<sup>2</sup></td>
-                    <td>√</td>
+                    <td id="sqd">x<sup>2</sup></td>
+                    <td id="sqr"><sup>2</sup>&radic;x</td>
                     <td id="ac">AC</td>
                     <td class="calc">÷</td>
                 </tr>
@@ -167,9 +43,9 @@
                 </tr>
                 <tr>
                     <td class="num">0</td>
-                    <td>.</td>
-                    <td>←</td>
-                    <td id="equal" class="calc">=</td>
+                    <td id="dot">.</td>
+                    <td id="oc">&#9003;</td>
+                    <td id="equal">=</td>
                 </tr>
             </table>
         </div>

@@ -26,6 +26,7 @@
 
 table {
     width: 100%;
+    font-size: 24px;
     table-layout: fixed;
     text-align: center;
     border-collapse: collapse;
@@ -36,4 +37,3 @@ td {
     margin-left: 0;
     border: solid 1px black;
 }
-
