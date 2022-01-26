@@ -88,33 +88,41 @@ $(function(){
         if(nums.length == calc.length) {
             nums.push(nums[nums.length - 1])
         }
-
+        console.log(nums,calc)
         display()
         $("#cldisp").append("=")
         
         nums = nums.map(Number)
         // まずは積と商を求める
-        for(let i = 0; i < calc.length; i++) {
+        var i = 0
+        while(i < calc.length) {
             if(calc[i] == "×") {
                 calculator(i, nums[i] * nums[i + 1])
             } else if(calc[i] == "÷") {
                 calculator(i, nums[i] / nums[i + 1])
+            } else {
+                i++
             }
         }
+        console.log(nums,calc)
+
         // 和と差を求める
-        for(let i = 0; i < calc.length; i++) {
+        var i = 0
+        while(i < calc.length) {
             if(calc[i] == "+") {
                 calculator(i, nums[i] + nums[i + 1])
             } else if(calc[i] == "-") {
                 calculator(i, nums[i] - nums[i + 1])
+            } else {
+                i++
             }
         }
+        console.log(nums,calc)
+
         nums[0] = String(nums[0])
         // 答えの表示
         $("#disp").text(nums[0])
         idx = 0
-        console.log(nums)
-        console.log(calc)
     })
     
     function display() {
@@ -148,7 +156,7 @@ $(function(){
 
     function calculator(i, n) {
         nums.splice(i,2,n)
-        calc.pop(i)
+        calc.splice(i,1)
     }
 
 });
