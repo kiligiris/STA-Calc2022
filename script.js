@@ -141,7 +141,6 @@ $(function(){
         }
 
         $("#cldisp").text(cldisp.join(""))
-
         $("#disp").text(nums[idx])
     }
     // 計算式を作成
@@ -158,5 +157,4 @@ $(function(){
         nums.splice(i,2,n)
         calc.splice(i,1)
     }
-
 });
